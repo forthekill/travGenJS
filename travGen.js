@@ -27,11 +27,13 @@ function sector(name){
 					continue;
 				}
 				var system = new world(x,y,name,this.metadata.maturity);
+				system.generate();
 				this.worlds.push(system);
 			}
 		}
 
 		// Partition worlds into subsectors
+		this.createSubsectors();
 		this.splitSector();
 		this.createMap();
 	}
@@ -39,11 +41,13 @@ function sector(name){
 	/* Converts a sector file (text) into a sector object */
 	this.parseSector =  function(text){
 
-		for (var i = 0; i < 16; i += 1) {
-			// Creates 16 subsectors each with its own world array
-			this.subsectors[i] = {worlds: []};
-		}
-
+		this.createSubsectors();
+		/*
+				for (var i = 0; i < 16; i += 1) {
+					// Creates 16 subsectors each with its own world array
+					this.subsectors[i] = {worlds: []};
+				}
+		*/
 		var lineArr = [];
 		var count = 0;
 
@@ -137,7 +141,15 @@ function sector(name){
 		// Partition worlds into subsectors
 		for(var w=0; w < wlen; w++){
 			var ss = this.worlds[w].getSubsec();
+			//console.log("ss: " + ss);
 			this.subsectors[ss].worlds.push(this.worlds[w]);
+		}
+	}
+
+	this.createSubsectors = function(){
+		for (var i = 0; i < 16; i += 1) {
+			// Creates 16 subsectors each with its own world array
+			this.subsectors[i] = {worlds: []};
 		}
 	}
 
@@ -199,7 +211,7 @@ function sector(name){
 
 
 /*
-** Subsector object
+** TODO Subsector object
 */
 
 function subsector(letter){
@@ -248,7 +260,7 @@ function world(x,y,name,maturity){
 	this.wtn = 0;
 
 	this.generate = function(){
-		this.genUWP();
+		this.genUwp();
 		this.genExt();
 		this.genTradeNumber();
 	}
@@ -725,22 +737,21 @@ function tradeCodes(){
 	this.cx = false;
 
 	/* Generates trade codes for a world */
-	// TODO: Move this to the tradeCodes object
 	this.generate = function(uwp){
-		if ((uwp.atm > 3 && uwp.atm < 10) && (uwp.hyd > 3 && uwp.hyd < 9) && (uwp.pop > 4 && uwp.pop < 8)){	this.codes.ag = true; }
-		if (uwp.size == 0 && uwp.atm == 0 && uwp.hyd == 0){ this.codes.as = true; } else if (uwp.atm == 0){ this.codes.va = true; }
-		if (uwp.pop == 0 && uwp.gov == 0 && uwp.law == 0) { this.codes.ba = true; }
-		if (uwp.hyd == 0 && uwp.atm > 1) { this.codes.de = true; }
-		if (uwp.size > 9 && uwp.atm > 0) { this.codes.fl = true; }
-		if (uwp.pop > 8) { this.codes.hi = true; }
-		if (uwp.atm < 2 && uwp.hyd > 0) { this.codes.ic = true; }
-		if ((uwp.atm < 5 || uwp.atm == 7 || uwp.atm == 9) && uwp.pop > 8) { this.codes.ind = true; }
-		if (uwp.pop < 4) { this.codes.lo = true; }
-		if (uwp.atm < 4 && uwp.hyd < 4 && uwp.pop > 5) { this.codes.na = true; }
-		if (uwp.pop < 7) { this.codes.ni = true; }
-		if ((uwp.atm > 1 && uwp.atm < 6) && uwp.hyd < 4) { this.codes.po = true; }
-		if ((uwp.atm == 6 || uwp.atm == 8) && (uwp.pop > 5 && uwp.pop < 9) && (uwp.gov > 3 && uwp.gov < 10)){ this.codes.ri = true; }
-		if (uwp.hyd == 10) { this.codes.wa = true; }
+		if ((uwp.atm > 3 && uwp.atm < 10) && (uwp.hyd > 3 && uwp.hyd < 9) && (uwp.pop > 4 && uwp.pop < 8)){	this.ag = true; }
+		if (uwp.size == 0 && uwp.atm == 0 && uwp.hyd == 0){ this.as = true; } else if (uwp.atm == 0){ this.va = true; }
+		if (uwp.pop == 0 && uwp.gov == 0 && uwp.law == 0) { this.ba = true; }
+		if (uwp.hyd == 0 && uwp.atm > 1) { this.de = true; }
+		if (uwp.size > 9 && uwp.atm > 0) { this.fl = true; }
+		if (uwp.pop > 8) { this.hi = true; }
+		if (uwp.atm < 2 && uwp.hyd > 0) { this.ic = true; }
+		if ((uwp.atm < 5 || uwp.atm == 7 || uwp.atm == 9) && uwp.pop > 8) { this.ind = true; }
+		if (uwp.pop < 4) { this.lo = true; }
+		if (uwp.atm < 4 && uwp.hyd < 4 && uwp.pop > 5) { this.na = true; }
+		if (uwp.pop < 7) { this.ni = true; }
+		if ((uwp.atm > 1 && uwp.atm < 6) && uwp.hyd < 4) { this.po = true; }
+		if ((uwp.atm == 6 || uwp.atm == 8) && (uwp.pop > 5 && uwp.pop < 9) && (uwp.gov > 3 && uwp.gov < 10)){ this.ri = true; }
+		if (uwp.hyd == 10) { this.wa = true; }
 	}
 
 	/* Parse a string of trade codes and set the world object properties */
