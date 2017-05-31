@@ -120,6 +120,18 @@ function sector(name){
 		return array.join("\n");
 	}
 
+	this.writeSectorHTML = function(){
+		var array = [];
+		array.push("<pre>");
+		// Grab each world, create a world string, and add it to the array
+		this.worlds.forEach(function(world) {
+			array.push(world.writeWorld());
+		});
+		array.push("</pre>");
+		// Create text, one world string per line
+		return array.join("</br>");
+	}
+
 	this.splitSector = function(){
 		var wlen = this.worlds.length;
 		// Partition worlds into subsectors
