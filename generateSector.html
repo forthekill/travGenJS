@@ -36,7 +36,7 @@
 	var name = "Testing";
 
   // Create new sector object
-  var sector = new sector("Sol",50,3);
+  var sector = new Sector("Sol",50,3);
 	console.log(sector);
 
   // Generate sector data
@@ -48,7 +48,7 @@
   divSector.innerHTML = sector.writeSectorHTML();
 
   // Create new world object
-  var star = new world(0,0,"Terra",2);
+  var star = new World(0,0,"Terra",2);
   // Generate UWP for world
 	star.genUwp();
 	console.log(star);
