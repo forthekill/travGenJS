@@ -15,7 +15,6 @@ None
 `<script type="text/javascript" src="travGenUtils.js"></script>`  
 
 
-----------
 ## API Reference
 
 sector generation  
@@ -35,26 +34,22 @@ world output
 sector drawing  
 subsector drawing  
 
-----------
 
 ## Built With
 
 * [atom](http://www.atom.io) - Text Editor
 * [jQuery](https://jquery.com)
 
-----------
 
 ## Contributing
 
 ??
 
-----------
 
 ## Versioning
 
 ??
 
-----------
 
 ## Authors
 
@@ -62,13 +57,11 @@ subsector drawing
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
-----------
 
 ## License
 
 ??
 
-----------
 
 ## Acknowledgments
 
