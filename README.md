@@ -12,8 +12,8 @@ None
 
 ### Installing
 
-<script type="text/javascript" src="travGen.js"></script>
-<script type="text/javascript" src="travGenUtils.js"></script>
+`<script type="text/javascript" src="travGen.js"></script>`
+`<script type="text/javascript" src="travGenUtils.js"></script>`
 
 ## API Reference
 
