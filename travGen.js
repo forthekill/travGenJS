@@ -1,11 +1,14 @@
+// Constants for sector size
 var SEC_COLS = 32;
 var SEC_ROWS = 40;
+// Constant for jump distance
 var JUMP_DIST = 2;
 
-/*
-/* Sector object
-*/
-function sector(name){
+/**
+ * Sector object constructor
+ * @param {string} name of the Sector
+ */
+function Sector(name){
 	this.metadata = {};
 	this.worlds = [];
 	this.secMap = {};
@@ -26,7 +29,7 @@ function sector(name){
 				if (roll(100,1,0) > this.metadata.density) {
 					continue;
 				}
-				var system = new world(x,y,name,this.metadata.maturity);
+				var system = new World(x,y,name,this.metadata.maturity);
 				system.generate();
 				this.worlds.push(system);
 			}
@@ -63,7 +66,7 @@ function sector(name){
 
 			if (lineArr[x].match(/^(.{10,}) (\d\d\d\d) (\w\w\w\w\w\w\w-\w) (\w| ) (.{10,}) +(\w| ) (\w\w\w) (\w\w)/)) {
 				// Matches data lines for systems
-				var w = new world(0,0,"Unnamed",3);
+				var w = new World(0,0,"Unnamed",3);
 				var u = new UWP();
 
 				w.name = RegExp.$1;
@@ -172,7 +175,7 @@ function sector(name){
 			for(var x=i+1; x < len; x++){
 				//console.log(x);
 				var end = this.worlds[x];
-				var rt = new route(start.hex,end.hex,type);
+				var rt = new Route(start.hex,end.hex,type);
 				//console.log("rt: " + rt);
 				// Calculate best route for jump length
 				rt.calculatePath(JUMP_DIST,this.secMap);
@@ -207,14 +210,14 @@ function sector(name){
 		// Update subsector and world arrays
 	}
 
-}
+};
 
 
-/*
-** TODO Subsector object
-*/
-
-function subsector(letter){
+/**
+ * Subsector object constructor
+ * @param {string} letter of the Subsector
+ */
+function Subsector(letter){
 	this.name = "";
 	this.index = hexToNum(letter);
 	this.letter = letter;
@@ -235,13 +238,17 @@ function subsector(letter){
 	this.addWorld = function(world){
 
 	}
-}
+};
 
 
-/*
-/* World object
-*/
-function world(x,y,name,maturity){
+/**
+ * World object constructor
+ * @param {string} x coordinate in the Sector
+ * @param {string} y coordinate in the Sector
+ * @param {string} name of the World
+ * @param {string} maturity of the World
+ */
+function World(x,y,name,maturity){
 	this.name = name;
 	this.x = x;
 	this.y = y;
@@ -249,7 +256,7 @@ function world(x,y,name,maturity){
 	this.mat = maturity;
 	this.uwp = new UWP();
 	this.base = " ";
-	this.trade = new tradeCodes();
+	this.trade = new TradeCodes();
 	this.pmod = 0;
 	this.gas = 0;
 	this.belt = 0;
@@ -259,6 +266,10 @@ function world(x,y,name,maturity){
 	this.uwtn = 0;
 	this.wtn = 0;
 
+	// TODO should a world keep track of its subsector and sector? probably.
+	// TODO create a setHex method for x and y, remove x and y from constructor
+	// TODO generate should take maturity
+
 	this.generate = function(){
 		this.genUwp();
 		this.genExt();
@@ -266,10 +277,10 @@ function world(x,y,name,maturity){
 	}
 
 	this.parseWorld = function(){
-		// TODO
+		// TODO Takes a world string and parses it into a World object
 	}
 
-	/* Concatenates a world object into a world string */
+	/* Concatenates a World object into a world string */
 	this.writeWorld = function(){
 		var line = ljust(this.name,25," ");
 		line += this.hex;
@@ -301,6 +312,7 @@ function world(x,y,name,maturity){
 		this.genAllegiance();
 	}
 
+	/* Generates a trade number for a world */
 	this.genTradeNumber = function(){
 		this.genUWTN();
 		this.genWTN();
@@ -446,12 +458,12 @@ function world(x,y,name,maturity){
 		var	ss = Math.floor((this.x - 1) / (SEC_COLS / 4)) + Math.floor((this.y - 1) / (SEC_ROWS / 4)) * 4;
 		return ss;
 	}
-}
+};
 
 
-/*
-/* UWP object
-*/
+/**
+ * UWP object constructor
+ */
 function UWP(){
 	this.stp = 35;
 	this.size = 0;
@@ -578,13 +590,16 @@ function UWP(){
 		if (this.tl < 0) { this.tl = 0; }
 	}
 
-}
+};
 
 
-/*
-/* Route object
-*/
-function route(start,end,type){
+/**
+ * Route object constructor
+ * @param {string} start hex of the Route
+ * @param {string} end hex of the Route
+ * @param {string} type of Route (trade, xboat, gate, wormhole, etc.)
+ */
+function Route(start,end,type){
 	this.type = type; // trade, xboat, gate, wormhole, etc.
 	this.start = start; // start hex
 	this.end = end; // end hex
@@ -712,13 +727,13 @@ function route(start,end,type){
 		}
 		return hops;
 	}
-}
+};
 
 
-/*
-/* Trade code object
-*/
-function tradeCodes(){
+/**
+ * Trade code object constructor
+ */
+function TradeCodes(){
 	this.ag = false;
 	this.as = false;
 	this.ba = false;
@@ -846,4 +861,4 @@ function tradeCodes(){
 		if (this.wa){ codes += "Wa"; }
 		return codes;
 	}
-}
+};
