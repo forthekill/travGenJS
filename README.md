@@ -1,7 +1,6 @@
 # travGenJS
 Javascript library for generating, reading, writing, and drawing sector data for sci-fi RPGs such as Traveller.
 
-
 ## Getting Started
 
 The files generateSector.html and readSector.html are greate
@@ -12,40 +11,50 @@ None
 
 ### Installing
 
-`<script type="text/javascript" src="travGen.js"></script>`
-`<script type="text/javascript" src="travGenUtils.js"></script>`
+`<script type="text/javascript" src="travGen.js"></script>`  
+`<script type="text/javascript" src="travGenUtils.js"></script>`  
 
+
+----------
 ## API Reference
 
-sector generation
-subsector generation
-world generation
-uwp generation
-trade route generation
+sector generation  
+subsector generation  
+world generation  
+uwp generation  
+trade route generation  
 
-sector reading
-subsector reading
-world reading
+sector reading  
+subsector reading  
+world reading  
 
-sector output
-subsector output
-world output
+sector output  
+subsector output  
+world output  
 
-sector drawing
-subsector drawing
+sector drawing  
+subsector drawing  
+
+----------
 
 ## Built With
 
 * [atom](http://www.atom.io) - Text Editor
 * [jQuery](https://jquery.com)
 
+----------
+
 ## Contributing
 
 ??
 
+----------
+
 ## Versioning
 
 ??
+
+----------
 
 ## Authors
 
@@ -53,9 +62,13 @@ subsector drawing
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
+----------
+
 ## License
 
 ??
+
+----------
 
 ## Acknowledgments
 
