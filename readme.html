@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>travGenJS Readme</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+
+	<style>
+		body{
+			font-family: Helvetica, sans-serif;
+		}
+
+		.title {
+			font-size: 24px;
+			font-weight: bold;
+			text-align: left;
+		}
+
+		.subTitle {
+			font-size: 18px;
+			font-weight: bold;
+		}
+
+		.description {
+			font-size: 16px;
+		}
+
+		.pre {
+			font-family: 'Roboto Mono', monospace;
+		}
+
+		.methodName {
+			font-family: 'Roboto Mono', monospace;
+			font-weight: bold;
+		}
+
+		.methodDesc {
+			font-family: Helvetica, sans-serif;
+		}
+
+		.code {
+			font-family: 'Roboto Mono', monospace;
+		}
+
+		div.code {
+			font-family: 'Roboto Mono', monospace;
+			padding: 0.5em;
+			border: none;
+			width: 800px;
+			background-color: #84BDCE;
+		}
+
+		.pHead {
+			font-size: 16px;
+			font-weight: bold;
+		}
+
+		.sectionHead {
+			font-family: 'Roboto Mono', monospace;
+			font-size: 16px;
+			font-weight: bold;
+		}
+
+		.sectorFormat {
+			font-size: 12px;
+			font-weight: normal;
+		}
+
+		.sectorFormatHead {
+			font-size: 12px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="header">
+		<p>
+			<span class="title">travGen</span><br />
+			<span class="subTitle">A Javascript library for the Traveller&reg; RPG</span><br />
+			<span class="description">Generation, display, mapping, and output</span>
+		</p>
+	</div>
+	<div id="sector" style="border:#84BDCE dashed 1px; padding-left:3px; width:960px">
+		<p><span class="sectionHead">sector{}</span><br />
+			The sector object contains all the information about a given sector including metadata, worlds data, and trade information.</p>
+		<div id="secStruct" style="border:#84BDCE dashed 1px; padding-left:5px;"><span class="pHead">Structure</span><br />
+			<br />
+			<span class="methodName">metadata{}</span><br />
+			<span class="methodDesc">Information about the sector</span><br />
+			<div class="code">
+				<pre>
+	<strong>Properties</strong>
+	name      String  None   Name of the sector
+	density   int     0-100  Percentage change a world exists
+	maturity  int     0-3    Level of maturity
+				</pre>
+			</div>
+			<br />
+			<span class="methodName">worlds[]</span><br />
+			<span class="methodDesc">Array of world objects</span><br />
+			<br />
+			<span class="methodName">secMap{}</span><br />
+			<span class="methodDesc">Object that tracks which hexes have worlds</span><br />
+			<br />
+			<span class="methodName">subsectors[]</span><br />
+			<span class="methodDesc">Array of subsector objects</span><br />
+			<br />
+			<span class="methodName">tradeRoutes[]</span><br />
+			<span class="methodDesc">Array of route objects</span><br />
+			<br />
+		</div>
+		<div id="secPublic" style="border:#84BDCE dashed 1px; padding-left:5px;"><span class="pHead">Public methods</span><br />
+			<p><span class="methodName">void generate(int density, int maturity)</span><br />
+				<span class="methodDesc">Creates a sector by generating worlds</span></p>
+			<p><span class="methodName">void parseSector(String secFile)</span><br />
+				<span class="methodDesc">Parses a sec file and populates a sector</span></p>
+			<p><span class="methodName">String writeSector()</span><br />
+				<span class="methodDesc">Creates a sec file from sector object</span></p>
+			<p><span class="methodName">void splitSector()</span><br />
+				<span class="methodDesc">Parses the worlds array and populates the subsectors array</span></p>
+			<p><span class="methodName">void generateTradeRoutes()</span><br />
+				<span class="methodDesc">Generates and populates the tradeRoutes array for a sector</span></p>
+			<p><span class="methodName">void addWorld(world world)</span><br />
+				<span class="methodDesc">Adds a world to a sector object</span></p>
+			<p><span class="methodName">void delWorld(String hexnumber)</span><br />
+				<span class="methodDesc">Removes a world from a sector object</span></p>
+		</div>
+	</div>
+	<div id="world" style="border:#84BDCE dashed 1px; padding-left:3px; width:960px">
+		<p><span class="sectionHead">world {}</span><br />
+			The world object contains all the information about a given world including ...</p>
+		<div id="worldProps" style="border:#84BDCE dashed 1px; padding-left:5px;">
+			<span class="pHead">Properties</span>
+			<div class="code">
+				<pre>
+	name     String		none	Name of the world
+	x        int		0		X hex
+	y        int		0		Y hex
+	hex      String		0000	Full hex number
+				</pre>
+			</div>
+		</div>
+		<div id="secPublic" style="border:#84BDCE dashed 1px; padding-left:5px;"><span class="pHead">Public methods</span><br />
+			<p><span class="methodName">void generate()</span><br />
+				<span class="methodDesc">Creates a random world</span></p>
+			<p><span class="methodName">void parseWorld()</span><br />
+				<span class="methodDesc">Parses a world string and creates a world</span></p>
+			<p><span class="methodName">String writeWorld()</span><br />
+				<span class="methodDesc">Writes a world string from a world object</span></p>
+			<p><span class="methodName">void genUwp()</span><br />
+				<span class="methodDesc"></span></p>
+			<p><span class="methodName">void genExt()</span><br />
+				span class="methodDesc"></span></p>
+			<p><span class="methodName">void genTradeNumber()</span><br />
+				<span class="methodDesc"></span></p>
+			<p><span class="methodName">int getSubSec()</span><br />
+				<span class="methodDesc">Returns the subsector in number format for world</span></p>
+		</div>
+	</div>
+
+	<!-- Google Analytics -->
+	<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+		try {
+			var pageTracker = _gat._getTracker("UA-12819163-1");
+			pageTracker._setDomainName(".forthekill.com");
+			pageTracker._trackPageview();
+		} catch(err) {}
+	</script>
+</body>
+</html>
