@@ -5,7 +5,9 @@ var SEC_ROWS = 40;
 var JUMP_DIST = 2;
 
 /**
- * Sector object constructor
+ * Creates an instance of a Sector
+ *
+ * @constructor
  * @param {string} name of the Sector
  */
 function Sector(name){
@@ -214,7 +216,9 @@ function Sector(name){
 
 
 /**
- * Subsector object constructor
+ * Creates an instance of a Subsector
+ *
+ * @constructor
  * @param {string} letter of the Subsector
  */
 function Subsector(letter){
@@ -242,7 +246,9 @@ function Subsector(letter){
 
 
 /**
- * World object constructor
+ * Creates an instance of a World
+ *
+ * @constructor
  * @param {string} x coordinate in the Sector
  * @param {string} y coordinate in the Sector
  * @param {string} name of the World
@@ -462,7 +468,9 @@ function World(x,y,name,maturity){
 
 
 /**
- * UWP object constructor
+ * Creates an instance of a UWP
+ *
+ * @constructor
  */
 function UWP(){
 	this.stp = 35;
@@ -594,7 +602,9 @@ function UWP(){
 
 
 /**
- * Route object constructor
+ * Creates an instance of a Route
+ *
+ * @constructor
  * @param {string} start hex of the Route
  * @param {string} end hex of the Route
  * @param {string} type of Route (trade, xboat, gate, wormhole, etc.)
@@ -731,7 +741,9 @@ function Route(start,end,type){
 
 
 /**
- * Trade code object constructor
+ * Creates an instnace of a Trade code
+ *
+ * @constructor
  */
 function TradeCodes(){
 	this.ag = false;
