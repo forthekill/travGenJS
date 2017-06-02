@@ -3,7 +3,9 @@ Javascript library for generating, reading, writing, and drawing sector data for
 
 ## Getting Started
 
-The files generateSector.html and readSector.html are greate
+The file generateSector.html is a simple example of using the library to generate a new sector, a new world, and a new UWP.
+
+The file readSector.html is a simple example of using travGenJS to read sector data into a Sector object, and then outputing that data to the screen in standard .sec format.
 
 ### Prerequisites
 
